@@ -64,7 +64,9 @@ $('.events-slider').slick({
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
-    arrows: false,
+    arrows: true,
+    prevArrow: '<button type="button" class="slick-prev"></button>',
+    nextArrow: '<button type="button" class="slick-next"></button>',
     responsive: [
         {
             breakpoint: 1024,
@@ -102,7 +104,9 @@ $('.gallery-slider').slick({
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
-    arrows: false,
+    arrows: true,
+    prevArrow: '<button type="button" class="slick-prev"></button>',
+    nextArrow: '<button type="button" class="slick-next"></button>',
     responsive: [
         {
             breakpoint: 1024,
