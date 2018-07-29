@@ -107,49 +107,6 @@ $('.gallery-slider').slick({
         // instead of a settings object
     ]
 });
-var myMap;
-var myGeoObject;
-ymaps.ready(function(){
-    // Указывается идентификатор HTML-элемента.
-    myMap = new ymaps.Map("map", {
-        center: [54.923536, 37.436763],
-        zoom: 13
-    });
-    myMap.behaviors.disable('scrollZoom');
-    // Создание геообъекта с типом точка (метка).
-    var myPlacemark = new ymaps.Placemark([54.910918, 37.424391] , {},
-        {   iconLayout: 'default#imageWithContent',
-            iconImageHref: '/img/forest.png',
-            iconImageSize: [32, 32],
-            iconImageOffset: [-20, -47] });
-    var myPlacemark2 = new ymaps.Placemark([54.927741, 37.442568] , {},
-        {   iconLayout: 'default#imageWithContent',
-            iconImageHref: '/img/forest.png',
-            iconImageSize: [32, 32],
-            iconImageOffset: [-20, -47] });
-    var myPlacemark3 = new ymaps.Placemark([54.918457, 37.437565] , {},
-        {   iconLayout: 'default#imageWithContent',
-            iconImageHref: '/img/forest.png',
-            iconImageSize: [32, 32],
-            iconImageOffset: [-20, -47] });
-    var myPlacemark4 = new ymaps.Placemark([54.907971, 37.413225] , {},
-        {   iconLayout: 'default#imageWithContent',
-            iconImageHref: '/img/forest.png',
-            iconImageSize: [32, 32],
-            iconImageOffset: [-20, -47] });
-    var myPlacemark5 = new ymaps.Placemark([54.931889, 37.465362] , {},
-        {   iconLayout: 'default#imageWithContent',
-            iconImageHref: '/img/forest.png',
-            iconImageSize: [32, 32],
-            iconImageOffset: [-20, -47] });
-
-// Размещение геообъекта на карте.
-    myMap.geoObjects.add(myPlacemark);
-    myMap.geoObjects.add(myPlacemark2);
-    myMap.geoObjects.add(myPlacemark3);
-    myMap.geoObjects.add(myPlacemark4);
-    myMap.geoObjects.add(myPlacemark5);
-});
 $('.map-nav-item').click(function () {
     var coordX = $(this).attr('data-coord-x');
     var coordY = $(this).attr('data-coord-y');
@@ -217,4 +174,46 @@ $(window).resize(function(){
 });
 
 
+var myMap;
+var myGeoObject;
+ymaps.ready(function(){
+    // Указывается идентификатор HTML-элемента.
+    myMap = new ymaps.Map("map", {
+        center: [54.923536, 37.436763],
+        zoom: 13
+    });
+    myMap.behaviors.disable('scrollZoom');
+    // Создание геообъекта с типом точка (метка).
+    var myPlacemark = new ymaps.Placemark([54.910918, 37.424391] , {},
+        {   iconLayout: 'default#imageWithContent',
+            iconImageHref: '/img/forest.png',
+            iconImageSize: [32, 32],
+            iconImageOffset: [-20, -47] });
+    var myPlacemark2 = new ymaps.Placemark([54.927741, 37.442568] , {},
+        {   iconLayout: 'default#imageWithContent',
+            iconImageHref: '/img/forest.png',
+            iconImageSize: [32, 32],
+            iconImageOffset: [-20, -47] });
+    var myPlacemark3 = new ymaps.Placemark([54.918457, 37.437565] , {},
+        {   iconLayout: 'default#imageWithContent',
+            iconImageHref: '/img/forest.png',
+            iconImageSize: [32, 32],
+            iconImageOffset: [-20, -47] });
+    var myPlacemark4 = new ymaps.Placemark([54.907971, 37.413225] , {},
+        {   iconLayout: 'default#imageWithContent',
+            iconImageHref: '/img/forest.png',
+            iconImageSize: [32, 32],
+            iconImageOffset: [-20, -47] });
+    var myPlacemark5 = new ymaps.Placemark([54.931889, 37.465362] , {},
+        {   iconLayout: 'default#imageWithContent',
+            iconImageHref: '/img/forest.png',
+            iconImageSize: [32, 32],
+            iconImageOffset: [-20, -47] });
 
+// Размещение геообъекта на карте.
+    myMap.geoObjects.add(myPlacemark);
+    myMap.geoObjects.add(myPlacemark2);
+    myMap.geoObjects.add(myPlacemark3);
+    myMap.geoObjects.add(myPlacemark4);
+    myMap.geoObjects.add(myPlacemark5);
+});
