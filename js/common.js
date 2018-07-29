@@ -28,35 +28,7 @@ $('.news-slider').slick({
     autoplaySpeed: 3000,
     arrows: true,
     prevArrow: '<button type="button" class="slick-prev"></button>',
-    nextArrow: '<button type="button" class="slick-next"></button>',
-    responsive: [
-        {
-            breakpoint: 1024,
-            settings: {
-                slidesToShow: 3,
-                slidesToScroll: 3,
-                infinite: true,
-                dots: true
-            }
-        },
-        {
-            breakpoint: 600,
-            settings: {
-                slidesToShow: 2,
-                slidesToScroll: 2
-            }
-        },
-        {
-            breakpoint: 480,
-            settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1
-            }
-        }
-        // You can unslick at a given breakpoint now by adding:
-        // settings: "unslick"
-        // instead of a settings object
-    ]
+    nextArrow: '<button type="button" class="slick-next"></button>'
 });
 $('.events-slider').slick({
     dots: false,
@@ -74,13 +46,12 @@ $('.events-slider').slick({
             breakpoint: 1024,
             settings: {
                 slidesToShow: 3,
-                slidesToScroll: 3,
-                infinite: true,
-                dots: true
+                slidesToScroll: 1,
+                dots: false
             }
         },
         {
-            breakpoint: 600,
+            breakpoint: 768,
             settings: {
                 slidesToShow: 2,
                 slidesToScroll: 2
@@ -114,13 +85,11 @@ $('.gallery-slider').slick({
             breakpoint: 1024,
             settings: {
                 slidesToShow: 3,
-                slidesToScroll: 3,
-                infinite: true,
-                dots: true
+                slidesToScroll: 1
             }
         },
         {
-            breakpoint: 600,
+            breakpoint: 768,
             settings: {
                 slidesToShow: 2,
                 slidesToScroll: 2
@@ -189,6 +158,7 @@ $('.map-nav-item').click(function () {
     });
 });
 
+//Modal windows events
 function closeModal() {
     $(".modal-window-section").removeClass('active');
     $('html').removeClass('active');
@@ -214,6 +184,36 @@ $('.gallery .gallery-slider-slide img, .events .events-slider-item img').on('cli
     recepient.attr('src', $selfSRC);
     console.log($selfSRC);
 
+});
+
+//Burger events
+
+var mobileActive = false;
+$('.mobile-burger').on('click', function() {
+    $(this).toggleClass('active');
+    mobileActive = $(this).hasClass('active');
+    if (mobileActive) {
+        $('.nav-list').addClass('active');
+    } else {
+        $('.nav-list').removeClass('active');
+    }
+});
+$('.nav-list').on('click', function() {
+    mobileActive = false;
+    $('.mobile-burger').removeClass('active');
+    $(this).removeClass('active');
+});
+var w = $(window).width();
+$(window).resize(function(){
+    var new_w=$(window).width();
+    if(new_w!=w) {
+        if (new_w > 1200) {
+            mobileActive = false;
+            $('.mobile-burger').removeClass('active');
+            $('.nav-list').removeClass('active');
+        }
+        w=new_w;
+    }
 });
 
 
