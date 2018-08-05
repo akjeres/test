@@ -18,6 +18,7 @@ $(document).ready(function(){
         }
     });
 });
+
 $('.news-slider').slick({
     dots: false,
     infinite: true,
@@ -29,6 +30,37 @@ $('.news-slider').slick({
     arrows: true,
     prevArrow: '<button type="button" class="slick-prev"></button>',
     nextArrow: '<button type="button" class="slick-next"></button>'
+});
+$('.news-slider-sub').slick({
+    dots: false,
+    infinite: true,
+    speed: 3000,
+    slidesToShow: 2,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    arrows: true,
+    prevArrow: '<button type="button" class="slick-prev"></button>',
+    nextArrow: '<button type="button" class="slick-next"></button>',
+    responsive: [
+        {
+            breakpoint: 769,
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2
+            }
+        },
+        {
+            breakpoint: 481,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1
+            }
+        }
+        // You can unslick at a given breakpoint now by adding:
+        // settings: "unslick"
+        // instead of a settings object
+    ]
 });
 $('.events-slider').slick({
     dots: false,
@@ -119,6 +151,7 @@ $('.map-nav-item').click(function () {
 function closeModal() {
     $(".modal-window-section").removeClass('active');
     $('html').removeClass('active');
+    $('.modal-window-image').attr('src', '');
 };
 function openModal() {
     $(".modal-window-section").addClass('active');
@@ -136,10 +169,11 @@ $('.modal-window-close').on('click', function() {
 $('.gallery .gallery-slider-slide img, .events .events-slider-item img').on('click', function() {
     var $self = $(this);
     var $selfSRC = $self.prop('src');
+    var lastDot = $selfSRC.lastIndexOf('.');
+    var $fullSRC = $selfSRC.substring(0, lastDot) + '-full' + $selfSRC.substring(lastDot);
     var recepient = $('.modal-window-image');
+    recepient.attr('src', $fullSRC);
     openModal();
-    recepient.attr('src', $selfSRC);
-    console.log($selfSRC);
 
 });
 
