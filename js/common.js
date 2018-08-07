@@ -139,6 +139,11 @@ $('.gallery-slider').slick({
         // instead of a settings object
     ]
 });
+
+$('.to-top').css({
+    left: ($('.helpful-links_column').eq(2).offset().left + $('.helpful-links_column').eq(2).innerWidth() - 44) + 'px'
+});
+
 $('.map-nav-item').click(function () {
     var coordX = $(this).attr('data-coord-x');
     var coordY = $(this).attr('data-coord-y');
@@ -194,6 +199,13 @@ $('.nav-list').on('click', function() {
     $('.mobile-burger').removeClass('active');
     $(this).removeClass('active');
 });
+
+$('.to-top').click(function(e) {
+    $('html, body').animate({
+        scrollTop: 0
+    }, 1500);
+});
+
 var w = $(window).width();
 $(window).resize(function(){
     var new_w=$(window).width();
@@ -205,7 +217,11 @@ $(window).resize(function(){
         }
         w=new_w;
     }
+    $('.to-top').css({
+        left: ($('.helpful-links_column').eq(2).offset().left + $('.helpful-links_column').eq(2).innerWidth() - 44) + 'px'
+    });
 });
+
 
 
 var myMap;
@@ -220,27 +236,27 @@ ymaps.ready(function(){
     // Создание геообъекта с типом точка (метка).
     var myPlacemark = new ymaps.Placemark([54.910918, 37.424391] , {},
         {   iconLayout: 'default#imageWithContent',
-            iconImageHref: '/img/forest.png',
+            iconImageHref: 'img/forest.png',
             iconImageSize: [32, 32],
             iconImageOffset: [-20, -47] });
     var myPlacemark2 = new ymaps.Placemark([54.927741, 37.442568] , {},
         {   iconLayout: 'default#imageWithContent',
-            iconImageHref: '/img/forest.png',
+            iconImageHref: 'img/forest.png',
             iconImageSize: [32, 32],
             iconImageOffset: [-20, -47] });
     var myPlacemark3 = new ymaps.Placemark([54.918457, 37.437565] , {},
         {   iconLayout: 'default#imageWithContent',
-            iconImageHref: '/img/forest.png',
+            iconImageHref: 'img/forest.png',
             iconImageSize: [32, 32],
             iconImageOffset: [-20, -47] });
     var myPlacemark4 = new ymaps.Placemark([54.907971, 37.413225] , {},
         {   iconLayout: 'default#imageWithContent',
-            iconImageHref: '/img/forest.png',
+            iconImageHref: 'img/forest.png',
             iconImageSize: [32, 32],
             iconImageOffset: [-20, -47] });
     var myPlacemark5 = new ymaps.Placemark([54.931889, 37.465362] , {},
         {   iconLayout: 'default#imageWithContent',
-            iconImageHref: '/img/forest.png',
+            iconImageHref: 'img/forest.png',
             iconImageSize: [32, 32],
             iconImageOffset: [-20, -47] });
 
