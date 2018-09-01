@@ -111,7 +111,7 @@ $('.gallery-slider').slick({
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
-    arrows: true,
+    arrows: !($('main').hasClass('park-description')),
     prevArrow: '<button type="button" class="slick-prev"></button>',
     nextArrow: '<button type="button" class="slick-next"></button>',
     responsive: [
@@ -149,7 +149,23 @@ $('.single-park-slider').slick({
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
-    arrows: false
+    arrows: false,
+    responsive: [
+        {
+            breakpoint: 769,
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1
+            }
+        },
+        {
+            breakpoint: 481,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1
+            }
+        }
+    ]
 });
 
 if ($('section').hasClass('helpful-links')) {
@@ -224,6 +240,10 @@ $('.to-top').click(function(e) {
     }, 1500);
 });
 
+if ($('main').hasClass('events-gallery-block')) {
+    $('.events-gallery-item-image').height($('.events-gallery-item').width() * 0.6);
+}
+
 var w = $(window).width();
 $(window).resize(function(){
     var new_w=$(window).width();
@@ -244,50 +264,77 @@ $(window).resize(function(){
             left: ($('footer .medium-flex-container').offset().left + $('footer .medium-flex-container').innerWidth() - 44) + 'px'
         });
     }
+    if ($('main').hasClass('events-gallery-block')) {
+        $('.events-gallery-item-image').height($('.events-gallery-item').width() * 0.6);
+    }
 });
 
 
 
 var myMap;
 var myGeoObject;
-ymaps.ready(function(){
-    // Указывается идентификатор HTML-элемента.
-    myMap = new ymaps.Map("map", {
-        center: [54.923536, 37.436763],
-        zoom: 13
-    });
-    myMap.behaviors.disable('scrollZoom');
-    // Создание геообъекта с типом точка (метка).
-    var myPlacemark = new ymaps.Placemark([54.910918, 37.424391] , {},
-        {   iconLayout: 'default#imageWithContent',
-            iconImageHref: 'img/forest.png',
-            iconImageSize: [32, 32],
-            iconImageOffset: [-20, -47] });
-    var myPlacemark2 = new ymaps.Placemark([54.927741, 37.442568] , {},
-        {   iconLayout: 'default#imageWithContent',
-            iconImageHref: 'img/forest.png',
-            iconImageSize: [32, 32],
-            iconImageOffset: [-20, -47] });
-    var myPlacemark3 = new ymaps.Placemark([54.918457, 37.437565] , {},
-        {   iconLayout: 'default#imageWithContent',
-            iconImageHref: 'img/forest.png',
-            iconImageSize: [32, 32],
-            iconImageOffset: [-20, -47] });
-    var myPlacemark4 = new ymaps.Placemark([54.907971, 37.413225] , {},
-        {   iconLayout: 'default#imageWithContent',
-            iconImageHref: 'img/forest.png',
-            iconImageSize: [32, 32],
-            iconImageOffset: [-20, -47] });
-    var myPlacemark5 = new ymaps.Placemark([54.931889, 37.465362] , {},
-        {   iconLayout: 'default#imageWithContent',
-            iconImageHref: 'img/forest.png',
-            iconImageSize: [32, 32],
-            iconImageOffset: [-20, -47] });
+
+console.log($('.park-description .map-nav-item').data('coord-x'));
+console.log($('.park-description .map-nav-item').data('coord-y'));
+if ($('main').hasClass('park-description')) {
+    var $coordinatesSelector = $('.park-description .map-nav-item');
+    ymaps.ready(function(){
+        // Указывается идентификатор HTML-элемента.
+        myMap = new ymaps.Map("map_single", {
+            center: [$coordinatesSelector.data('coord-x'), $coordinatesSelector.data('coord-y')],
+            zoom: 15
+        });
+        myMap.behaviors.disable('scrollZoom');
+        // Создание геообъекта с типом точка (метка).
+        var myPlacemark = new ymaps.Placemark([$coordinatesSelector.data('coord-x'), $coordinatesSelector.data('coord-y')] , {},
+            {   iconLayout: 'default#imageWithContent',
+                iconImageHref: 'img/forest.png',
+                iconImageSize: [32, 32],
+                iconImageOffset: [-20, -47] });
 
 // Размещение геообъекта на карте.
-    myMap.geoObjects.add(myPlacemark);
-    myMap.geoObjects.add(myPlacemark2);
-    myMap.geoObjects.add(myPlacemark3);
-    myMap.geoObjects.add(myPlacemark4);
-    myMap.geoObjects.add(myPlacemark5);
-});
+        myMap.geoObjects.add(myPlacemark);
+    });
+} else if ($('div').is("#map")) {
+    ymaps.ready(function(){
+        // Указывается идентификатор HTML-элемента.
+        myMap = new ymaps.Map("map", {
+            center: [54.923536, 37.436763],
+            zoom: 13
+        });
+        myMap.behaviors.disable('scrollZoom');
+        // Создание геообъекта с типом точка (метка).
+        var myPlacemark = new ymaps.Placemark([54.910918, 37.424391] , {},
+            {   iconLayout: 'default#imageWithContent',
+                iconImageHref: 'img/forest.png',
+                iconImageSize: [32, 32],
+                iconImageOffset: [-20, -47] });
+        var myPlacemark2 = new ymaps.Placemark([54.927741, 37.442568] , {},
+            {   iconLayout: 'default#imageWithContent',
+                iconImageHref: 'img/forest.png',
+                iconImageSize: [32, 32],
+                iconImageOffset: [-20, -47] });
+        var myPlacemark3 = new ymaps.Placemark([54.918457, 37.437565] , {},
+            {   iconLayout: 'default#imageWithContent',
+                iconImageHref: 'img/forest.png',
+                iconImageSize: [32, 32],
+                iconImageOffset: [-20, -47] });
+        var myPlacemark4 = new ymaps.Placemark([54.907971, 37.413225] , {},
+            {   iconLayout: 'default#imageWithContent',
+                iconImageHref: 'img/forest.png',
+                iconImageSize: [32, 32],
+                iconImageOffset: [-20, -47] });
+        var myPlacemark5 = new ymaps.Placemark([54.931889, 37.465362] , {},
+            {   iconLayout: 'default#imageWithContent',
+                iconImageHref: 'img/forest.png',
+                iconImageSize: [32, 32],
+                iconImageOffset: [-20, -47] });
+
+// Размещение геообъекта на карте.
+        myMap.geoObjects.add(myPlacemark);
+        myMap.geoObjects.add(myPlacemark2);
+        myMap.geoObjects.add(myPlacemark3);
+        myMap.geoObjects.add(myPlacemark4);
+        myMap.geoObjects.add(myPlacemark5);
+    });
+}
